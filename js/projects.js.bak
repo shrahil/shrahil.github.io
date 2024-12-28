@@ -1,0 +1,114 @@
+// Function to fetch and load projects
+async function loadProjects(featuredOnly = false) {
+    try {
+        const response = await fetch('/projects/projects.json');
+        const data = await response.json();
+        let projects = data.projects;
+
+        // Filter for featured projects if needed
+        if (featuredOnly) {
+            projects = projects.filter(project => project.featured);
+        }
+
+        return projects;
+    } catch (error) {
+        console.error('Error loading projects:', error);
+        return [];
+    }
+}
+
+// Function to create project card HTML
+function createProjectCard(project) {
+    return `
+        <div class="project-card">
+            <div class="project-content">
+                <h3>${project.title}</h3>
+                <p>${project.description}</p>
+                <div class="project-tags">
+                    ${project.tags.map(tag => `<span class="tag">${tag}</span>`).join('')}
+                </div>
+                <a href="${project.path}" class="btn">Learn More</a>
+            </div>
+        </div>
+    `;
+}
+
+// Function to get unique tags from projects
+function getUniqueTags(projects) {
+    const tagsSet = new Set();
+    projects.forEach(project => {
+        project.tags.forEach(tag => tagsSet.add(tag));
+    });
+    return Array.from(tagsSet);
+}
+
+// Function to initialize tag filter
+async function initTagFilter() {
+    const tagFilter = document.querySelector('#tagFilter');
+    if (!tagFilter) return;
+
+    const projects = await loadProjects();
+    const tags = getUniqueTags(projects);
+    
+    const tagsHTML = tags.map(tag => 
+        `<span class="tag" data-tag="${tag}">${tag}</span>`
+    ).join('');
+    
+    tagFilter.innerHTML = tagsHTML;
+
+    // Add event listeners for tag filtering
+    const tagElements = tagFilter.querySelectorAll('.tag');
+    tagElements.forEach(tag => {
+        tag.addEventListener('click', () => {
+            const isActive = tag.classList.toggle('active');
+            const activeTag = isActive ? tag.dataset.tag : null;
+            filterProjectsByTag(activeTag);
+        });
+    });
+}
+
+// Function to filter projects by tag
+async function filterProjectsByTag(tag) {
+    const projects = await loadProjects();
+    const filteredProjects = tag 
+        ? projects.filter(project => project.tags.includes(tag))
+        : projects;
+    
+    const projectsGrid = document.querySelector('.projects-grid');
+    projectsGrid.innerHTML = filteredProjects.map(createProjectCard).join('');
+}
+
+// Initialize projects on the projects page
+async function initProjectsPage() {
+    const projectsGrid = document.querySelector('.projects-grid');
+    if (!projectsGrid) return;
+
+    const projects = await loadProjects(false); // Load all projects
+    const projectsHTML = projects.map(createProjectCard).join('');
+    projectsGrid.innerHTML = projectsHTML;
+    
+    // Initialize tag filter if we're on the projects page
+    if (window.location.pathname.includes('/projects/')) {
+        initTagFilter();
+    }
+}
+
+// Initialize featured projects on homepage
+async function initHomepageProjects() {
+    const projectsGrid = document.querySelector('#projects .projects-grid');
+    if (!projectsGrid) return;
+
+    const projects = await loadProjects(true); // Load only featured projects
+    const projectsHTML = projects.map(createProjectCard).join('');
+    projectsGrid.innerHTML = projectsHTML;
+}
+
+// Initialize based on current page
+document.addEventListener('DOMContentLoaded', () => {
+    const isProjectsPage = window.location.pathname.includes('/projects/');
+    if (isProjectsPage) {
+        initProjectsPage();
+    } else {
+        initHomepageProjects();
+    }
+});

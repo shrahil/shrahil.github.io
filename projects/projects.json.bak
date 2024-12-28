@@ -1,0 +1,34 @@
+{
+  "projects": [
+    {
+      "id": "revision-scheduler",
+      "title": "Building a revision scheduler for students in 5 hours",
+      "description": "How I built a planner for test prep students to revise their syllabus in 2 days flat (with no help from my tech team)",
+      "shortDescription": "AI-powered revision planning tool built in just 5 hours",
+      "featured": true,
+      "tags": ["AI", "Education", "Productivity"],
+      "path": "/projects/revision-scheduler.html",
+      "date": "2024-01-15"
+    },
+    {
+      "id": "feedback-analyzer",
+      "title": "User Feedback Analysis from YouTube and Google Play Store",
+      "description": "If you are a content creator or app developer, you're always concerned about your users. This tool will help you analyze what your audience is saying",
+      "shortDescription": "AI tool for analyzing user feedback across platforms",
+      "featured": true,
+      "tags": ["AI", "Analytics", "User Research"],
+      "path": "/projects/feedback-analyzer.html",
+      "date": "2024-02-01"
+    },
+    {
+      "id": "tarot-reader",
+      "title": "Tarot card reader app",
+      "description": "This app is your personal Tarot reader which can help predict your future and allay your anxieties with a Tarot reading.",
+      "shortDescription": "AI-powered Tarot reading application",
+      "featured": true,
+      "tags": ["AI", "Entertainment"],
+      "path": "/projects/tarot-reader.html",
+      "date": "2024-02-15"
+    }
+  ]
+}
