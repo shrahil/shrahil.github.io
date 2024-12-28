@@ -1,9 +1,11 @@
 /* Global Styles */
 :root {
-    --primary-color: #2c3e50;
-    --secondary-color: #3498db;
-    --text-color: #333;
-    --background-color: #f8f9fa;
+    --primary-color: #000000;
+    --text-color: #292929;
+    --background-color: #ffffff;
+    --soft-gray: #757575;
+    --border-color: #e6e6e6;
+    --max-width: 680px;
 }
 
 * {
@@ -13,17 +15,45 @@
 }
 
 body {
-    font-family: 'Inter', sans-serif;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
     line-height: 1.6;
     color: var(--text-color);
     background-color: var(--background-color);
+    font-size: 18px;
+}
+
+/* Typography */
+h1, h2, h3 {
+    font-weight: 700;
+    line-height: 1.3;
+    color: var(--primary-color);
+}
+
+h1 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+}
+
+h2 {
+    font-size: 2rem;
+    margin-bottom: 0.8rem;
+}
+
+h3 {
+    font-size: 1.5rem;
+    margin-bottom: 0.6rem;
+}
+
+p {
+    margin-bottom: 1.2rem;
+    color: var(--text-color);
 }
 
 /* Navigation */
 .navbar {
-    background-color: white;
-    padding: 1rem 2rem;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    background-color: var(--background-color);
+    padding: 2rem;
+    border-bottom: 1px solid var(--border-color);
     position: fixed;
     width: 100%;
     top: 0;
@@ -32,109 +62,110 @@ body {
 
 .nav-links {
     display: flex;
-    justify-content: flex-end;
+    justify-content: center;
     list-style: none;
-    gap: 2rem;
+    gap: 2.5rem;
+    max-width: var(--max-width);
+    margin: 0 auto;
 }
 
 .nav-links a {
-    color: var(--primary-color);
+    color: var(--text-color);
     text-decoration: none;
     font-weight: 500;
-    transition: color 0.3s ease;
+    font-size: 1rem;
+    transition: color 0.2s ease;
 }
 
 .nav-links a:hover {
-    color: var(--secondary-color);
+    color: var(--soft-gray);
 }
 
 /* Hero Section */
 .hero {
-    height: 100vh;
+    min-height: 80vh;
     display: flex;
     align-items: center;
     justify-content: center;
     text-align: center;
-    padding: 0 2rem;
-    background-color: var(--primary-color);
-    color: white;
+    padding: 6rem 2rem 4rem;
+    background-color: var(--background-color);
+    max-width: var(--max-width);
+    margin: 0 auto;
 }
 
 .hero h1 {
     font-size: 3.5rem;
-    margin-bottom: 1rem;
+    margin-bottom: 1.5rem;
 }
 
 .hero p {
-    font-size: 1.5rem;
-    opacity: 0.9;
+    font-size: 1.25rem;
+    color: var(--soft-gray);
 }
 
 /* Sections */
 section {
-    padding: 5rem 2rem;
+    padding: 4rem 2rem;
+    max-width: var(--max-width);
+    margin: 0 auto;
 }
 
 .section-title {
-    text-align: center;
-    margin-bottom: 3rem;
+    text-align: left;
+    margin-bottom: 2.5rem;
 }
 
 /* About */
 .about {
-    background-color: white;
+    background-color: var(--background-color);
 }
 
-.about-content {
-    max-width: 800px;
-    margin: 0 auto;
+.about-content p {
+    font-size: 1.1rem;
+    line-height: 1.7;
 }
 
 /* Projects */
 .projects-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 2rem;
-    max-width: 1200px;
-    margin: 0 auto;
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+    margin-bottom: 3rem;
 }
 
 .project-card {
-    background-color: white;
-    border-radius: 8px;
-    overflow: hidden;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-    transition: transform 0.3s ease;
+    background-color: var(--background-color);
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 2.5rem;
 }
 
-.project-card:hover {
-    transform: translateY(-5px);
+.project-content h3 {
+    margin-bottom: 1rem;
 }
 
-.project-content {
-    padding: 1.5rem;
+.project-content p {
+    color: var(--soft-gray);
 }
 
 /* Musings */
 .blog-posts {
-    max-width: 800px;
-    margin: 0 auto;
+    display: grid;
+    gap: 2.5rem;
 }
 
 .blog-post {
-    margin-bottom: 2rem;
-    padding-bottom: 2rem;
-    border-bottom: 1px solid #eee;
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 2.5rem;
+}
+
+.blog-post p {
+    color: var(--soft-gray);
 }
 
 /* Contact */
-.contact {
-    background-color: white;
-}
-
 .contact-form {
-    max-width: 600px;
-    margin: 0 auto;
+    margin-top: 2rem;
 }
 
 .form-group {
@@ -144,43 +175,69 @@ section {
 .form-group label {
     display: block;
     margin-bottom: 0.5rem;
+    color: var(--primary-color);
+    font-weight: 500;
 }
 
 .form-group input,
 .form-group textarea {
     width: 100%;
     padding: 0.75rem;
-    border: 1px solid #ddd;
+    border: 1px solid var(--border-color);
     border-radius: 4px;
+    font-family: inherit;
+    font-size: 1rem;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: var(--soft-gray);
 }
 
 .btn {
     display: inline-block;
     padding: 0.75rem 1.5rem;
-    background-color: var(--secondary-color);
+    background-color: var(--primary-color);
     color: white;
     border: none;
     border-radius: 4px;
     cursor: pointer;
-    transition: background-color 0.3s ease;
+    text-decoration: none;
+    font-weight: 500;
+    transition: opacity 0.2s ease;
 }
 
 .btn:hover {
-    background-color: #2980b9;
+    opacity: 0.9;
 }
 
 /* Footer */
 footer {
-    background-color: var(--primary-color);
-    color: white;
     text-align: center;
-    padding: 2rem;
+    padding: 4rem 2rem;
+    color: var(--soft-gray);
+    border-top: 1px solid var(--border-color);
+}
+
+/* Utilities */
+.text-center {
+    text-align: center;
+    margin-top: 2rem;
 }
 
 /* Responsive Design */
 @media (max-width: 768px) {
+    body {
+        font-size: 16px;
+    }
+
     .nav-links {
-        justify-content: center;
+        gap: 1.5rem;
+    }
+
+    .hero {
+        padding: 5rem 1.5rem 3rem;
     }
 
     .hero h1 {
@@ -188,10 +245,24 @@ footer {
     }
 
     .hero p {
-        font-size: 1.2rem;
+        font-size: 1.1rem;
     }
 
     section {
-        padding: 3rem 1rem;
+        padding: 3rem 1.5rem;
     }
+
+    .projects-grid {
+        gap: 2rem;
+    }
+}
+
+/* Content width control */
+.about-content,
+.projects-grid,
+.blog-posts,
+.contact-form {
+    width: 100%;
+    max-width: var(--max-width);
+    margin: 0 auto;
 }
