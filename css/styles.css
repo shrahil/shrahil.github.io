@@ -108,6 +108,40 @@ p {
     color: var(--soft-gray);
 }
 
+.sphere-animation-container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+}
+
+.iframe-wrapper {
+    position: relative;
+    width: 100%;
+    padding-bottom: 56.25%; /* 16:9 aspect ratio */
+    height: 0;
+    overflow: hidden;
+}
+
+.iframe-wrapper iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+@media (max-width: 768px) {
+    .sphere-animation-container {
+        margin: 1rem auto;
+    }
+    
+    .iframe-wrapper {
+        padding-bottom: 75%; /* Adjust aspect ratio for mobile */
+    }
+}
 /* Sections */
 section {
     padding: 4rem 2rem;
